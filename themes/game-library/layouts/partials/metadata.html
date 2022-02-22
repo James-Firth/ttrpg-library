@@ -1,0 +1,32 @@
+<div style="display: inline-grid; grid-template-columns: 1fr 1fr">
+  <label>Genre</label> <span>{{ .Page.Params.genre }}</span>
+  <label>Weight</label> <span>{{.Page.Params.complication}}</span> {{ with
+  .Params.tags }} {{/* <span><i data-feather="tag"></i> Tags </span> */}}
+  <label>Tags</label>
+  <div id="tags">
+    {{ range . }} {{ $href := print (absURL "tags/") (urlize .) }}
+    <a class="btn btn-sm btn-outline-dark tag-btn" href="{{ $href }}"
+      >{{ . }}</a
+    >
+    {{ end }}
+  </div>
+  {{ end }} {{ with .Params.features }}
+  <div>
+    <h3>Features</h3>
+    <ul>
+      {{ range . }}
+      <li>{{ . }}</li>
+      {{ end }}
+    </ul>
+  </div>
+  {{ end }}
+</div>
+{{/* {{ $dateTime := .PublishDate.Format "2006-01-02" }} {{ $dateFormat :=
+.Site.Params.dateFormat | default "Jan 2, 2006" }}
+<i data-feather="calendar"></i>
+<time datetime="{{ $dateTime }}">{{ .PublishDate.Format $dateFormat }}</time>
+{{ with .Params.tags }}
+<i data-feather="tag"></i>
+{{ range . }} {{ $href := print (absURL "tags/") (urlize .) }}
+<a class="btn btn-sm btn-outline-dark tag-btn" href="{{ $href }}">{{ . }}</a>
+{{ end }} {{ end }} */}}

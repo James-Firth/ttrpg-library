@@ -1,0 +1,10 @@
+baseURL: 'http://example.org/'
+languageCode: 'en-us'
+title: 'James Games Library'
+theme: 'game-library'
+sectionPagesMenu: 'main'
+taxonomies:
+  category: categories
+  series: series
+  genre: genres
+  tag: tags

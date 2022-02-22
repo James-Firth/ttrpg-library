@@ -1,0 +1,37 @@
+{{ define "main" }}
+<h1 style="text-align: center">{{ .Title }}</h1>
+<div style="display: flex; justify-content: center; flex-wrap: wrap">
+  {{ range .Pages.ByTitle }}
+  <div class="game-preview">
+    <div class="box-art" style="height: 283px">
+      <a href="{{ .RelPermalink }}">
+        {{/* TODO PUT LOGIC FOR PLACEHOLDER IMAGE
+        https://via.placeholder.com/177x283.png?text=Example%20Book*/}} {{
+        $original := .Page.Resources.GetMatch "cover.*" }} {{ if ne $original
+        nil}} {{ .Scratch.Set "image" ($original.Fit "177x283 Center") }} {{
+        $image := .Scratch.Get "image" }}
+        <img
+          style="max-width: 100%; width: auto; height: auto"
+          src="{{ $image.RelPermalink }}"
+          width="{{ $image.Width }}"
+          height="{{ $image.Height }}"
+        />
+        {{ else }}
+        <img
+          style="max-width: 100%; width: auto; height: auto"
+          src=" https://via.placeholder.com/177x283.png?text=Example%20Book"
+          width="177"
+          height="283"
+        />
+        {{ end }}
+      </a>
+    </div>
+
+    <h4>{{ .Title }}</h4>
+    {{/* Genre: {{ .Params.genre}}<br />
+    Weight: {{ .Params.complication }}<br />
+    */}}
+  </div>
+  {{ end }}
+</div>
+{{end}}

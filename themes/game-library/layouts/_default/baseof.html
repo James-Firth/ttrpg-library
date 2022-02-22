@@ -1,0 +1,8 @@
+<!DOCTYPE html>
+<html>
+  {{- partial "head.html" . -}}
+  <body style="background-color: antiquewhite">
+    {{- partial "header.html" . -}} {{- block "main" . }}{{- end }} {{- partial
+    "footer.html" . -}} {{- partial "script.html" . -}}
+  </body>
+</html>

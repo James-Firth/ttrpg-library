@@ -1,33 +1,53 @@
 {{ define "main" }}
-<div class="wrapper">
-	<div class="game-title" style="
-	width: 100%;
-	border-bottom: black solid;
-	margin-bottom: 1rem;">
-		<h1>{{ .Title }}</h1>
-		{{ if .Page.Params.author }}
-			<div id="game_info">
-				<label>Written by </label><span>{{ .Page.Params.author }}</span>
-			</div>
-		{{ end }}
-	</div>
-	<div class="game_cover-art" style=" min-width: 177px; flex: 1; display: flex; justify-content: center">
-		{{ $original := .Page.Resources.GetMatch "cover.jpg"}}
-		{{ if ne $original nil}} {{ .Scratch.Set "image" ($original.Fit "177x283") }}
-		{{ $image := .Scratch.Get "image" }}
-		<img style="max-width: 100%; width: auto; height: auto" src="{{ $image.RelPermalink }}" width="{{ $image.Width }}"
-			height="{{ $image.Height }}" />
-		{{ else }}
-		<img style="max-width: 100%; width: auto; height: auto"
-			src=" https://via.placeholder.com/177x283.png?text=Example%20Book" width="177" height="283" />
-		{{ end }}
-	</div>
-	<div class="game_features-and-metadata" style="display: flex; flex: 2">
-		{{ partial "metadata.html" . }}
-	</div>
-	<div class="game_pitch">
-		{{ .Content }}
-	</div>
+<div
+  class="wrapper"
+  style="
+    display: flex;
+    flex-wrap: wrap;
+    margin: 8rem;
+    border-color: black;
+    border-style: solid;
+    padding: 2rem;
+    box-shadow: burlywood 0.5rem 0.5rem 1rem;
+  "
+>
+  <div
+    class="game-title"
+    style="width: 100%; border-bottom: black solid; margin-bottom: 1rem"
+  >
+    <h1>{{ .Title }}</h1>
+    {{ if .Page.Params.author }}
+    <div id="game_info">
+      <label>Written by </label><span>{{ .Page.Params.author }}</span>
+    </div>
+    {{ end }}
+  </div>
+  <div
+    class="game_cover-art"
+    style="min-width: 177px; flex: 1; display: flex; justify-content: center"
+  >
+    {{ $original := .Page.Resources.GetMatch "cover.jpg"}} {{ if ne $original
+    nil}} {{ .Scratch.Set "image" ($original.Fit "177x283") }} {{ $image :=
+    .Scratch.Get "image" }}
+    <img
+      style="max-width: 100%; width: auto; height: auto"
+      src="{{ $image.RelPermalink }}"
+      width="{{ $image.Width }}"
+      height="{{ $image.Height }}"
+    />
+    {{ else }}
+    <img
+      style="max-width: 100%; width: auto; height: auto"
+      src=" https://via.placeholder.com/177x283.png?text=Example%20Book"
+      width="177"
+      height="283"
+    />
+    {{ end }}
+  </div>
+  <div class="game_features-and-metadata" style="display: flex; flex: 2">
+    {{ partial "metadata.html" . }}
+  </div>
+  <div class="game_pitch">{{ .Content }}</div>
 </div>
 
 {{ end }}

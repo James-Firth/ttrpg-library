@@ -2,7 +2,7 @@
 <h1 style="text-align: center">{{ .Title }}</h1>
 <div style="display: flex; justify-content: center; flex-wrap: wrap">
   {{ range .Pages.ByTitle }}
-  <div class="game-preview">
+  <div class="game-preview" style="margin: 1rem">
     <div class="box-art" style="height: 283px">
       <a href="{{ .RelPermalink }}">
         {{/* TODO PUT LOGIC FOR PLACEHOLDER IMAGE
